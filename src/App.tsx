@@ -97,8 +97,10 @@ function App() {
             <FooterSkeleton />
           </>
         ) : (
-          <div ref={contentRef}>
+          <>
             {!isDetailsView && <Header />}
+            
+            <div ref={contentRef} className="relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
 
             {activeService ? (
               <ServiceDetails 
@@ -141,10 +143,14 @@ function App() {
                     <Contact />
                   </div>
                 </main>
-
-                <Footer />
               </>
             )}
+
+            </div>
+            
+            <div className="relative z-0">
+              <Footer />
+            </div>
 
             {/* Global Modals & Overlays */}
             {!isDetailsView && (
@@ -153,7 +159,7 @@ function App() {
                 <FloatingActions />
               </>
             )}
-          </div>
+          </>
         )}
 
       </div>

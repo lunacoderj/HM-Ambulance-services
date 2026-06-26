@@ -17,17 +17,17 @@ export const Footer: React.FC = () => {
     gsap.registerPlugin(ScrollTrigger);
     
     if (footerRef.current && containerRef.current) {
-      // The reveal animation: footer elements slide up and fade in
+      // Parallax curtain reveal effect
       gsap.fromTo(footerRef.current,
-        { y: 100, opacity: 0.8 },
+        { yPercent: -30, scale: 0.95 },
         {
-          y: 0,
-          opacity: 1,
+          yPercent: 0,
+          scale: 1,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top bottom",
-            end: "bottom 95%",
+            end: "bottom bottom",
             scrub: true,
           }
         }
