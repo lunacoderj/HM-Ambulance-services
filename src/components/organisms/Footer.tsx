@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Logo } from '../atoms/Logo';
 import { siteConfig } from '../../data/siteConfig';
-import { PhoneCall, ShieldCheck, MapPin, Radio, Activity } from 'lucide-react';
+import { PhoneCall, ShieldCheck, MapPin, Activity } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 export const Footer: React.FC = () => {

@@ -3,7 +3,6 @@ import type { Service } from '../../data/services';
 import { ArrowLeft, PhoneCall, MessageCircle, ShieldCheck, CheckCircle2, Clock, Activity, ShieldAlert } from 'lucide-react';
 import { siteConfig } from '../../data/siteConfig';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { Footer } from './Footer';
 
 interface ServiceDetailsProps {
   service: Service;
@@ -25,7 +24,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onBack 
   const whatsappMessage = encodeURIComponent(`Hi, I need immediate assistance regarding: ${title}. Please reply ASAP.`);
 
   return (
-    <div className="min-h-screen bg-[#060e1a] text-white flex flex-col relative z-[100]">
+    <div className="flex-grow w-full bg-[#060e1a] text-white flex flex-col relative z-[100]">
       {/* ── Custom Navbar for Details View ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent py-4 px-6 md:px-10 flex items-center justify-between">
         <button 
@@ -167,8 +166,6 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onBack 
         </div>
       </main>
 
-      {/* ── Footer ── */}
-      <Footer />
     </div>
   );
 };

@@ -14,6 +14,14 @@ export const FloatingActions: React.FC = () => {
 
   return (
     <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 p-2">
+      {/* SOS Button */}
+      <button
+        onClick={() => window.dispatchEvent(new Event('open-emergency-mode'))}
+        className="group relative flex flex-col items-center justify-center w-14 h-16 bg-black hover:bg-gray-900 text-red-500 rounded-l-xl shadow-[0_0_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:w-16 hover:-translate-x-1 border border-red-500/50"
+      >
+        <div className="absolute inset-0 bg-red-600/20 rounded-l-xl animate-ping opacity-50" />
+        <span className="text-[12px] font-black uppercase tracking-widest text-center leading-tight z-10 animate-pulse">SOS</span>
+      </button>
       {/* Call Button */}
       <button
         onClick={handleCall}

@@ -15,6 +15,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { Logo } from './components/atoms/Logo';
 import { Footer } from './components/organisms/Footer';
 import { FloatingEmergencyBanner } from './components/molecules/FloatingEmergencyBanner';
+import { ScrollToTop } from './components/atoms/ScrollToTop';
 import type { Service } from './data/services';
 import { EquipmentDetails } from './components/organisms/EquipmentDetails';
 import type { Equipment as EquipmentType } from './data/equipment';
@@ -57,8 +58,12 @@ function App() {
     });
     gsap.ticker.lagSmoothing(0);
 
+    // Expose lenis globally so we can use it to reset scroll
+    (window as any).lenis = lenis;
+
     return () => {
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 
@@ -110,6 +115,21 @@ function App() {
       );
     }
   }, [appState]);
+  
+  useEffect(() => {
+    // Instantly scroll to the top of the page when opening/closing details
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+
+    // Refresh ScrollTrigger when navigating to/from details pages
+    // because the page height changes drastically and GSAP needs to recalculate
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  }, [activeService, activeEquipment]);
 
   const isDetailsView = activeService || activeEquipment;
 
@@ -143,7 +163,7 @@ function App() {
           <>
             {!isDetailsView && <Header />}
             
-            <div ref={contentRef} className="relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
+            <div ref={contentRef} className="flex-grow flex flex-col relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
 
             {activeService ? (
               <ServiceDetails 
@@ -199,12 +219,9 @@ function App() {
             </div>
 
             {/* Global Modals & Overlays */}
-            {!isDetailsView && (
-              <>
-                <EmergencyMode />
-                <FloatingActions />
-              </>
-            )}
+            <EmergencyMode />
+            <FloatingActions />
+            <ScrollToTop />
           </>
         )}
 

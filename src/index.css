@@ -179,3 +179,8 @@ img, svg, video, canvas {
   animation-play-state: paused;
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
