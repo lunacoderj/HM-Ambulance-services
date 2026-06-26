@@ -1,0 +1,26 @@
+export const siteConfig = {
+  name: 'HM Ambulance Service',
+  shortName: 'HM Ambulance',
+  description: '24/7 Emergency ambulance service in Guntur, Andhra Pradesh. Instant response, trained medics, medical-grade equipment.',
+  contact: {
+    emergencyPhone: '+91 78160 84332',
+    emergencyPhoneRaw: '+917816084332',
+    secondaryPhone: '+91 63014 05446',
+    secondaryPhoneRaw: '+916301405446',
+    whatsapp: '+91 78160 84332',
+    whatsappRaw: '+917816084332',
+    email: 'help@hmambulance.com',
+    ownerName: 'Sk. Esub',
+    address: 'Kothapet, GUNTUR - 1. Andhra Pradesh - 522001',
+  },
+  social: {
+    facebook: '#',
+    instagram: '#',
+    twitter: '#',
+  },
+  stats: {
+    patientsServed: '1,847+',
+    avgResponseTime: '7 min',
+    availability: '24/7',
+  }
+};
