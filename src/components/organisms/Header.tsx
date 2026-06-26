@@ -77,10 +77,6 @@ export const Header: React.FC = () => {
               <Phone className="w-3.5 h-3.5 text-emerald-500" />
               {siteConfig.contact.emergencyPhone}
             </a>
-            <a href={`tel:${siteConfig.contact.secondaryPhoneRaw}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
-              <Phone className="w-3.5 h-3.5 text-blue-500" />
-              {siteConfig.contact.secondaryPhone}
-            </a>
           </div>
         </div>
 

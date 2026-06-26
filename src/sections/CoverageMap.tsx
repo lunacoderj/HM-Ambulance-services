@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigation, Radio, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { siteConfig } from '../data/siteConfig';
 
 const COVERAGE_AREAS = [
   'Guntur City Proper',
@@ -101,10 +102,10 @@ export const CoverageMap: React.FC = () => {
                   {t.coverage.emergencyContact}
                 </div>
                 <a
-                  href="tel:+919849262335"
+                  href={`tel:${siteConfig.contact.emergencyPhoneRaw}`}
                   className="text-xl sm:text-2xl font-black text-white hover:text-red-400 transition-colors block drop-shadow-md"
                 >
-                  +91 98492 62335
+                  {siteConfig.contact.emergencyPhone}
                 </a>
                 <p className="text-[9px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wider mt-1">{t.coverage.available}</p>
               </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PhoneCall, MapPin, Send, MessageSquare, Clock, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { siteConfig } from '../data/siteConfig';
 
 export const Contact: React.FC = () => {
   const { t } = useLanguage();
@@ -43,17 +44,17 @@ export const Contact: React.FC = () => {
               <div>
                 <h3 className="text-xl md:text-2xl font-black text-white mb-6">{t.contact.directHotline}</h3>
                 
-                <a href="tel:+919849262335" className="group/btn flex items-center gap-4 md:gap-5 p-3 md:p-4 rounded-xl bg-gradient-to-r from-red-500/10 to-transparent border border-red-500/20 hover:border-red-500/50 transition-all duration-300 mb-6">
+                <a href={`tel:${siteConfig.contact.emergencyPhoneRaw}`} className="group/btn flex items-center gap-4 md:gap-5 p-3 md:p-4 rounded-xl bg-gradient-to-r from-red-500/10 to-transparent border border-red-500/20 hover:border-red-500/50 transition-all duration-300 mb-6">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 group-hover/btn:bg-red-500 group-hover/btn:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all duration-300">
                     <PhoneCall className="w-5 h-5 md:w-6 md:h-6 text-red-500 group-hover/btn:text-white group-hover/btn:animate-bounce" />
                   </div>
                   <div>
                     <div className="text-red-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">{t.contact.emergencyDial}</div>
-                    <div className="text-2xl md:text-3xl font-black text-white">+91 98492 62335</div>
+                    <div className="text-2xl md:text-3xl font-black text-white">{siteConfig.contact.emergencyPhone}</div>
                   </div>
                 </a>
 
-                <a href="https://wa.me/919849262335" target="_blank" rel="noreferrer" className="group/btn flex items-center gap-4 md:gap-5 p-3 md:p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-300 mb-8">
+                <a href={`https://wa.me/${siteConfig.contact.whatsappRaw.replace('+', '')}`} target="_blank" rel="noreferrer" className="group/btn flex items-center gap-4 md:gap-5 p-3 md:p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-300 mb-8">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 group-hover/btn:bg-emerald-500/20 transition-all duration-300">
                     <MessageSquare className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" />
                   </div>

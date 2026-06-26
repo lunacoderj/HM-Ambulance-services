@@ -12,7 +12,9 @@ import { Header } from './components/organisms/Header';
 import { FloatingActions } from './components/molecules/FloatingActions';
 import { ServiceDetails } from './components/organisms/ServiceDetails';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { Logo } from './components/atoms/Logo';
 import { Footer } from './components/organisms/Footer';
+import { FloatingEmergencyBanner } from './components/molecules/FloatingEmergencyBanner';
 import type { Service } from './data/services';
 import { EquipmentDetails } from './components/organisms/EquipmentDetails';
 import type { Equipment as EquipmentType } from './data/equipment';
@@ -32,8 +34,10 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [activeEquipment, setActiveEquipment] = useState<EquipmentType | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [appState, setAppState] = useState<'splash' | 'animating' | 'skeletons' | 'ready'>('splash');
   const contentRef = useRef<HTMLDivElement>(null);
+  const splashContainerRef = useRef<HTMLDivElement>(null);
+  const splashLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Smooth Scrolling Initialization
@@ -59,29 +63,68 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
+    // Splash Screen: Appear, Blink, and Disappear
+    if (splashLogoRef.current) {
+      const tl = gsap.timeline();
+
+      // 1. Hold initially
+      tl.to(splashLogoRef.current, { duration: 0.4 });
+      
+      // 2. Blink effect
+      tl.to(splashLogoRef.current, { opacity: 0.3, duration: 0.1, ease: "power1.inOut" });
+      tl.to(splashLogoRef.current, { opacity: 1, duration: 0.1, ease: "power1.inOut" });
+      tl.to(splashLogoRef.current, { opacity: 0.3, duration: 0.1, ease: "power1.inOut" });
+      tl.to(splashLogoRef.current, { opacity: 1, duration: 0.1, ease: "power1.inOut" });
+
+      // 3. Disappear
+      tl.to(splashLogoRef.current, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.4,
+        delay: 0.3,
+        ease: "power2.inOut",
+        onComplete: () => {
+          // Fade out the splash background
+          gsap.to(splashContainerRef.current, {
+            opacity: 0,
+            duration: 0.4,
+            onComplete: () => {
+              setAppState('skeletons');
+              // Show skeletons briefly
+              setTimeout(() => {
+                setAppState('ready');
+              }, 800);
+            }
+          });
+        }
+      });
+    }
   }, []);
 
   useEffect(() => {
-    if (!isLoading && contentRef.current) {
+    if (appState === 'ready' && contentRef.current) {
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0, y: 30, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out' }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, ease: 'power2.out' }
       );
     }
-  }, [isLoading]);
+  }, [appState]);
 
   const isDetailsView = activeService || activeEquipment;
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-white flex flex-col font-sans antialiased">
+      <div className="min-h-screen bg-white flex flex-col font-sans antialiased relative">
+        {appState !== 'ready' && (
+          <div ref={splashContainerRef} className="fixed inset-0 z-[100] bg-white flex items-center justify-center pointer-events-none">
+             <div ref={splashLogoRef}>
+                <Logo variant="dark" className="scale-[1.5] md:scale-[2]" />
+             </div>
+          </div>
+        )}
 
-        {isLoading ? (
+        {appState !== 'ready' ? (
           <>
             <HeaderSkeleton />
             <main className="flex-grow">
@@ -139,9 +182,12 @@ function App() {
 
                   <Testimonials />
 
-                  <div id="contact">
+                  <div id="contact" className="pb-12 md:pb-16">
                     <Contact />
                   </div>
+
+                  {/* Floating Emergency Banner - overlapping the footer */}
+                  <FloatingEmergencyBanner />
                 </main>
               </>
             )}

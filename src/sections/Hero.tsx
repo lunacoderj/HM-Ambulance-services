@@ -17,18 +17,21 @@ import {
   MapPinned,
 } from 'lucide-react';
 
-/* ── Heartbeat SVG Line ── */
-const HeartbeatLine: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <svg viewBox="0 0 200 40" fill="none" className={className} preserveAspectRatio="none">
-    <path
-      d="M0 20 H60 L70 8 L80 32 L90 4 L100 36 L110 8 L120 32 L130 20 H200"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="animate-[heartbeat-draw_2s_ease-in-out_infinite]"
-    />
-  </svg>
+/* ── Massive Background EKG Sweep ── */
+const FullWidthEKG: React.FC = () => (
+  <div className="absolute top-[35%] md:top-[40%] left-0 w-full h-32 md:h-48 -translate-y-1/2 pointer-events-none z-0 opacity-60 md:opacity-80 mix-blend-screen">
+    <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1000 100">
+      <path
+        d="M0 50 H430 L445 20 L460 80 L480 5 L500 95 L520 20 L540 80 L555 20 L570 50 H1000"
+        pathLength="1000"
+        fill="none"
+        stroke="#ef4444"
+        strokeWidth="3"
+        vectorEffect="non-scaling-stroke"
+        className="ekg-path"
+      />
+    </svg>
+  </div>
 );
 
 export const Hero: React.FC = () => {
@@ -118,6 +121,9 @@ export const Hero: React.FC = () => {
         }} />
         {/* Top ambient red/green glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-32 bg-[radial-gradient(ellipse_at_top,_rgba(239,68,68,0.08)_0%,_transparent_70%)]" />
+        
+        {/* Massive EKG Sweep */}
+        <FullWidthEKG />
       </div>
 
       {/* ══════════════════ MAIN HERO AREA ══════════════════ */}
@@ -138,7 +144,6 @@ export const Hero: React.FC = () => {
           </span>
           <span className="flex items-center justify-center gap-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-1">
             {t.hero.saveLives || 'TO SAVE LIVES'}
-            <HeartbeatLine className="w-20 md:w-28 h-8 text-red-500/70" />
           </span>
         </h1>
 
@@ -250,16 +255,16 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Heartbeat animation keyframe */}
+      {/* Heartbeat EKG scanner keyframes */}
       <style>{`
-        @keyframes heartbeat-draw {
-          0% { stroke-dashoffset: 600; opacity: 0.3; }
-          50% { opacity: 1; }
-          100% { stroke-dashoffset: 0; opacity: 0.3; }
+        @keyframes ekg-sweep {
+          0% { stroke-dashoffset: 1000; }
+          100% { stroke-dashoffset: -200; }
         }
-        .animate-\\[heartbeat-draw_2s_ease-in-out_infinite\\] {
-          stroke-dasharray: 600;
-          animation: heartbeat-draw 2s ease-in-out infinite;
+        .ekg-path {
+          stroke-dasharray: 150 1000;
+          animation: ekg-sweep 2.5s linear infinite;
+          filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1));
         }
       `}</style>
     </section>

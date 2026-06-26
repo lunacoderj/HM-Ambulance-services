@@ -8,7 +8,7 @@ const Shimmer = ({ className }: { className: string }) => (
 export const HeaderSkeleton = () => (
   <header className="fixed w-full z-50 bg-white/90 border-b border-gray-100 shadow-sm h-20 md:h-24">
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4">
-      <Shimmer className="w-32 h-10 md:w-48 md:h-12" />
+      <Shimmer className="header-logo-target w-32 h-10 md:w-48 md:h-12" />
       <div className="hidden md:flex items-center gap-6">
         {[1, 2, 3, 4, 5].map(i => <Shimmer key={i} className="w-16 h-4" />)}
       </div>

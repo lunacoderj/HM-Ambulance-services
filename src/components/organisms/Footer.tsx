@@ -17,18 +17,26 @@ export const Footer: React.FC = () => {
     gsap.registerPlugin(ScrollTrigger);
     
     if (footerRef.current && containerRef.current) {
-      // Parallax curtain reveal effect
+      // Unique 3D Drawbridge Peel Reveal Effect
+      gsap.set(footerRef.current, { transformOrigin: "top center" });
       gsap.fromTo(footerRef.current,
-        { yPercent: -30, scale: 0.95 },
+        { 
+          rotationX: -75, 
+          opacity: 0,
+          z: -200,
+          filter: "blur(10px)"
+        },
         {
-          yPercent: 0,
-          scale: 1,
-          ease: "none",
+          rotationX: 0,
+          opacity: 1,
+          z: 0,
+          filter: "blur(0px)",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top bottom",
             end: "bottom bottom",
-            scrub: true,
+            scrub: 1, // Smooth scrubbing
           }
         }
       );
@@ -49,7 +57,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <div ref={containerRef} className="relative mt-16 bg-[#02050A]">
+    <div ref={containerRef} className="relative bg-[#02050A]" style={{ perspective: "1200px" }}>
       <footer ref={footerRef} className="relative bg-[#02050A] border-t border-white/10 pt-24 md:pt-20 pb-10 font-sans">
       
       {/* ── Background Effects & Vehicle ── */}
@@ -75,25 +83,7 @@ export const Footer: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#02050A_100%)] opacity-80" />
       </div>
 
-      {/* ── Overlapping CTA (Floats over the top border) ── */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-4xl bg-gradient-to-r from-gray-900 to-[#0a1122] border border-white/10 rounded-2xl p-5 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-5 md:gap-6 backdrop-blur-xl z-20">
-        <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4">
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 border border-red-500/30">
-            <Radio className="w-4 h-4 md:w-5 md:h-5 text-red-500 animate-pulse" />
-          </div>
-          <div>
-            <h3 className="text-white font-black text-base md:text-xl uppercase tracking-widest">{t.footer.dispatchActive}</h3>
-            <p className="text-gray-400 text-[10px] md:text-sm mt-0.5 md:mt-1">{t.footer.standby}</p>
-          </div>
-        </div>
-        <a
-          href={`tel:${contactInfo.emergencyPhoneRaw}`}
-          className="w-full md:w-auto flex items-center justify-center gap-2 md:gap-3 bg-red-600 hover:bg-red-500 text-white font-black px-6 md:px-8 py-3 md:py-3.5 rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 hover:scale-105 text-sm md:text-base"
-        >
-          <PhoneCall className="w-4 h-4 md:w-5 md:h-5" />
-          {t.footer.callNow}
-        </a>
-      </div>
+      {/* ── Overlapping CTA (Moved to App.tsx for correct layering) ── */}
 
       <div className="page-container relative z-10 mt-24 md:mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-white/10 pb-12 md:pb-16">
@@ -147,22 +137,13 @@ export const Footer: React.FC = () => {
               <PhoneCall className="w-4 h-4 text-red-500" /> {t.footer.communicationHub}
             </h4>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               {/* Primary Line - Glassmorphism */}
               <div className="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-xl p-5 hover:bg-white/15 transition-all group">
                 <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent opacity-50" />
                 <div className="relative z-10">
                   <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1 drop-shadow-md">{t.footer.emergencyHotline}</div>
                   <a href={`tel:${contactInfo.emergencyPhoneRaw}`} className="text-xl font-semibold !text-white drop-shadow-lg">{contactInfo.emergencyPhone}</a>
-                </div>
-              </div>
-              
-              {/* Secondary Line - Glassmorphism */}
-              <div className="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-xl p-5 hover:bg-white/15 transition-all group">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent opacity-50" />
-                <div className="relative z-10">
-                  <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1 drop-shadow-md">{t.footer.secondaryLine}</div>
-                  <a href={`tel:${contactInfo.secondaryPhoneRaw}`} className="text-lg font-semibold !text-white drop-shadow-lg">{contactInfo.secondaryPhone}</a>
                 </div>
               </div>
             </div>
