@@ -4,7 +4,7 @@ import { siteConfig } from '../../data/siteConfig';
 
 export const FloatingActions: React.FC = () => {
   const handleCall = () => {
-    window.location.href = `tel:${siteConfig.contact.emergencyPhoneRaw}`;
+    window.location.href = `tel:${siteConfig.contact.sosPhoneRaw}`;
   };
 
   const handleWhatsApp = () => {

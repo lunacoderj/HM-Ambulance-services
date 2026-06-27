@@ -71,7 +71,7 @@ export const EmergencyMode: React.FC = () => {
           </p>
 
           <a 
-            href={`tel:${siteConfig.contact.emergencyPhoneRaw}`} 
+            href={`tel:${siteConfig.contact.sosPhoneRaw}`} 
             className="relative overflow-hidden group bg-red-600 text-white p-6 rounded-3xl flex flex-col items-center justify-center gap-3 shadow-[0_10px_40px_rgba(220,38,38,0.3)] transition-all hover:scale-105 active:scale-95 border border-red-500"
           >
             {/* Radar Sweep Effect */}
@@ -79,7 +79,7 @@ export const EmergencyMode: React.FC = () => {
             
             <PhoneCall className="w-10 h-10 animate-bounce" />
             <span className="font-black text-2xl md:text-3xl tracking-wider">CALL NOW</span>
-            <span className="text-red-200 text-sm font-bold tracking-widest uppercase opacity-80">{siteConfig.contact.emergencyPhone}</span>
+            <span className="text-red-200 text-sm font-bold tracking-widest uppercase opacity-80">{siteConfig.contact.sosPhone}</span>
           </a>
           
           <div className="grid grid-cols-2 gap-4 mt-2">

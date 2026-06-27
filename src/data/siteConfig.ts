@@ -5,6 +5,8 @@ export const siteConfig = {
   contact: {
     emergencyPhone: '+91 63014 05446',
     emergencyPhoneRaw: '+916301405446',
+    sosPhone: '+91 78160 84332',
+    sosPhoneRaw: '+917816084332',
     secondaryPhone: '+91 63014 05446',
     secondaryPhoneRaw: '+916301405446',
     whatsapp: '+91 63014 05446',
