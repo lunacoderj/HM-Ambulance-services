@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import ReactGA from "react-ga4";
 import { EmergencyMode } from './components/modals/EmergencyMode';
 import { Header } from './components/organisms/Header';
 import { FloatingActions } from './components/molecules/FloatingActions';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { Logo } from './components/atoms/Logo';
 import { Footer } from './components/organisms/Footer';
 import { FloatingEmergencyBanner } from './components/molecules/FloatingEmergencyBanner';
 import { ScrollToTop } from './components/atoms/ScrollToTop';
