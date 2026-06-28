@@ -57,9 +57,9 @@ export const Hero: React.FC = () => {
 
   /* ── Data ── */
   const ambulances = [
-    { id: 'basic', src: '/images/ambulances/basic_icu.png', label: t.hero.basicSupport },
-    { id: 'icu', src: '/images/ambulances/advanced.png', label: t.hero.icuVentilator },
-    { id: 'freezer', src: '/images/ambulances/freezer_ventilator.png', label: t.hero.freezerBox },
+    { id: 'basic', src: '/images/ambulances/basic_icu.webp', label: t.hero.basicSupport },
+    { id: 'icu', src: '/images/ambulances/advanced.webp', label: t.hero.icuVentilator },
+    { id: 'freezer', src: '/images/ambulances/freezer_ventilator.webp', label: t.hero.freezerBox },
   ];
 
   const features = [
@@ -105,7 +105,7 @@ export const Hero: React.FC = () => {
       <div aria-hidden="true" className="absolute inset-0 z-0">
         {/* Cinematic Background Image */}
         <img
-          src="/images/hero-bg.png"
+          src="/images/hero-bg.webp"
           alt="Night City Road"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-80"
           loading="eager"

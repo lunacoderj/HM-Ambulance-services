@@ -1,25 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import ReactGA from "react-ga4";
-import { Hero } from './sections/Hero';
-import { About } from './sections/About';
-import { Services } from './sections/Services';
-import { Equipment } from './sections/Equipment';
-import { Testimonials } from './sections/Testimonials';
-import { CoverageMap } from './sections/CoverageMap';
-import { HowItWorks } from './sections/HowItWorks';
-import { Contact } from './sections/Contact';
 import { EmergencyMode } from './components/modals/EmergencyMode';
 import { Header } from './components/organisms/Header';
 import { FloatingActions } from './components/molecules/FloatingActions';
-import { ServiceDetails } from './components/organisms/ServiceDetails';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { Logo } from './components/atoms/Logo';
 import { Footer } from './components/organisms/Footer';
 import { FloatingEmergencyBanner } from './components/molecules/FloatingEmergencyBanner';
 import { ScrollToTop } from './components/atoms/ScrollToTop';
 import type { Service } from './data/services';
-import { EquipmentDetails } from './components/organisms/EquipmentDetails';
 import type { Equipment as EquipmentType } from './data/equipment';
+
+// Lazy load heavy page sections (Phase 4 Optimization)
+const Hero = lazy(() => import('./sections/Hero').then(m => ({ default: m.Hero })));
+const About = lazy(() => import('./sections/About').then(m => ({ default: m.About })));
+const Services = lazy(() => import('./sections/Services').then(m => ({ default: m.Services })));
+const Equipment = lazy(() => import('./sections/Equipment').then(m => ({ default: m.Equipment })));
+const Testimonials = lazy(() => import('./sections/Testimonials').then(m => ({ default: m.Testimonials })));
+const CoverageMap = lazy(() => import('./sections/CoverageMap').then(m => ({ default: m.CoverageMap })));
+const HowItWorks = lazy(() => import('./sections/HowItWorks').then(m => ({ default: m.HowItWorks })));
+const Contact = lazy(() => import('./sections/Contact').then(m => ({ default: m.Contact })));
+const ServiceDetails = lazy(() => import('./components/organisms/ServiceDetails').then(m => ({ default: m.ServiceDetails })));
+const EquipmentDetails = lazy(() => import('./components/organisms/EquipmentDetails').then(m => ({ default: m.EquipmentDetails })));
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -180,52 +182,54 @@ function App() {
             
             <div ref={contentRef} className="flex-grow flex flex-col relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
 
-            {activeService ? (
-              <ServiceDetails 
-                service={activeService} 
-                onBack={() => setActiveService(null)} 
-              />
-            ) : activeEquipment ? (
-              <EquipmentDetails 
-                equipment={activeEquipment} 
-                onBack={() => setActiveEquipment(null)} 
-              />
-            ) : (
-              <>
-                <main className="flex-grow">
-                  <Hero />
-                  
-                  <div id="about">
-                    <About />
-                  </div>
+            <Suspense fallback={null}>
+              {activeService ? (
+                <ServiceDetails 
+                  service={activeService} 
+                  onBack={() => setActiveService(null)} 
+                />
+              ) : activeEquipment ? (
+                <EquipmentDetails 
+                  equipment={activeEquipment} 
+                  onBack={() => setActiveEquipment(null)} 
+                />
+              ) : (
+                <>
+                  <main className="flex-grow">
+                    <Hero />
+                    
+                    <div id="about">
+                      <About />
+                    </div>
 
-                  <div id="services">
-                    <Services onServiceClick={(s) => setActiveService(s)} />
-                  </div>
+                    <div id="services">
+                      <Services onServiceClick={(s) => setActiveService(s)} />
+                    </div>
 
-                  <div id="equipment">
-                    <Equipment onEquipmentClick={(e) => setActiveEquipment(e)} />
-                  </div>
+                    <div id="equipment">
+                      <Equipment onEquipmentClick={(e) => setActiveEquipment(e)} />
+                    </div>
 
-                  <div id="fleet">
-                    <HowItWorks />
-                  </div>
+                    <div id="fleet">
+                      <HowItWorks />
+                    </div>
 
-                  <div id="coverage">
-                    <CoverageMap />
-                  </div>
+                    <div id="coverage">
+                      <CoverageMap />
+                    </div>
 
-                  <Testimonials />
+                    <Testimonials />
 
-                  <div id="contact" className="pb-12 md:pb-16">
-                    <Contact />
-                  </div>
+                    <div id="contact" className="pb-12 md:pb-16">
+                      <Contact />
+                    </div>
 
-                  {/* Floating Emergency Banner - overlapping the footer */}
-                  <FloatingEmergencyBanner />
-                </main>
-              </>
-            )}
+                    {/* Floating Emergency Banner - overlapping the footer */}
+                    <FloatingEmergencyBanner />
+                  </main>
+                </>
+              )}
+            </Suspense>
 
             </div>
             

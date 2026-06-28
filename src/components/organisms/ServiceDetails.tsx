@@ -40,7 +40,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onBack 
       <div className="relative h-[60vh] md:h-[70vh] w-full flex items-end pb-16 md:pb-24">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <img loading="lazy" decoding="async" 
             src={service.image} 
             alt={service.title}
             className="w-full h-full object-cover object-center opacity-70"

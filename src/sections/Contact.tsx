@@ -16,7 +16,7 @@ export const Contact: React.FC = () => {
   return (
     <section id="contact" className="relative w-full bg-[#040810] py-24 overflow-hidden isolate border-t border-white/5">
       {/* Background Tech Gradients */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.webp')] opacity-5 mix-blend-overlay pointer-events-none" />
       <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] -z-10 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[100px] -z-10 translate-x-1/3 translate-y-1/3 pointer-events-none" />
 

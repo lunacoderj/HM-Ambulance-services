@@ -16,7 +16,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'అధునాతన ఆటో-లోడింగ్ స్ట్రెచర్',
     shortDescription: 'High-grade, shock-absorbing stretcher designed for smooth and secure patient transfers without manual lifting.',
     shortDescriptionTe: 'మాన్యువల్ లిఫ్టింగ్ లేకుండా రోగులను సురక్షితంగా మార్చడానికి రూపొందించబడిన హై-గ్రేడ్, షాక్-అబ్సోర్బింగ్ స్ట్రెచర్.',
-    image: '/images/equipment/stretcher.png',
+    image: '/images/equipment/stretcher.webp',
     features: [
       'Auto-loading mechanism',
       'Shock-absorbing wheels',
@@ -34,7 +34,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'మెడికల్ ఆక్సిజన్ సిస్టమ్',
     shortDescription: 'Dual high-capacity medical oxygen cylinders equipped with precise flowmeters and regulators for continuous respiratory support.',
     shortDescriptionTe: 'నిరంతర శ్వాసకోశ మద్దతు కోసం ఖచ్చితమైన ఫ్లోమీటర్లు మరియు రెగ్యులేటర్‌లతో కూడిన డ్యూయల్ హై-కెపాసిటీ మెడికల్ ఆక్సిజన్ సిలిండర్‌లు.',
-    image: '/images/equipment/oxygen.png',
+    image: '/images/equipment/oxygen.webp',
     features: [
       'Dual High-Capacity Cylinders',
       'Precise Flow Regulators',
@@ -52,7 +52,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'మల్టీపారా పేషెంట్ మానిటర్',
     shortDescription: 'Advanced cardiac and vital sign monitor to continuously track ECG, SpO2, blood pressure, and heart rate during transit.',
     shortDescriptionTe: 'రవాణా సమయంలో ECG, SpO2, రక్తపోటు మరియు హృదయ స్పందన రేటును నిరంతరం ట్రాక్ చేయడానికి అధునాతన కార్డియాక్ మరియు వైటల్ సైన్ మానిటర్.',
-    image: '/images/equipment/monitor.png',
+    image: '/images/equipment/monitor.webp',
     features: [
       'Real-time ECG & SpO2 Tracking',
       'NIBP & Heart Rate Monitoring',
@@ -70,7 +70,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'ఎమర్జెన్సీ PA & సైరన్ సిస్టమ్',
     shortDescription: 'High-decibel multi-tone siren and Public Address (PA) system ensuring quick traffic clearance during critical emergencies.',
     shortDescriptionTe: 'క్లిష్టమైన అత్యవసర పరిస్థితుల్లో త్వరిత ట్రాఫిక్ క్లియరెన్స్‌ని నిర్ధారించే హై-డెసిబెల్ మల్టీ-టోన్ సైరన్ మరియు పబ్లిక్ అడ్రస్ (PA) సిస్టమ్.',
-    image: '/images/equipment/siren.png',
+    image: '/images/equipment/siren.webp',
     features: [
       'Multi-tone Emergency Siren',
       'Clear PA Microphone',
@@ -88,7 +88,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'ఆటోమేటెడ్ ఎక్స్‌టర్నల్ డీఫిబ్రిలేటర్ (AED)',
     shortDescription: 'Life-saving cardiac device used to establish a normal heartbeat during sudden cardiac arrest.',
     shortDescriptionTe: 'ఆకస్మిక గుండె ఆగిపోవడంలో సాధారణ హృదయ స్పందనను పునరుద్ధరించడానికి ఉపయోగించే ప్రాణాలను రక్షించే కార్డియాక్ పరికరం.',
-    image: '/images/equipment/defibrillator.png',
+    image: '/images/equipment/defibrillator.webp',
     features: [
       'Quick shock delivery',
       'Voice prompts',
@@ -106,7 +106,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'ట్రాన్స్‌పోర్ట్ వెంటిలేటర్',
     shortDescription: 'Portable mechanical ventilation system for continuous respiratory support during critical transit.',
     shortDescriptionTe: 'క్లిష్టమైన రవాణా సమయంలో నిరంతర శ్వాసకోశ మద్దతు కోసం పోర్టబుల్ మెకానికల్ వెంటిలేషన్ సిస్టమ్.',
-    image: '/images/equipment/ventilator.png',
+    image: '/images/equipment/ventilator.webp',
     features: [
       'Invasive & Non-invasive modes',
       'Battery backup',
@@ -124,7 +124,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'మెడికల్ సక్షన్ అపారాటస్',
     shortDescription: 'High-vacuum portable suction pump to rapidly clear airways and prevent aspiration.',
     shortDescriptionTe: 'వాయుమార్గాలను వేగంగా క్లియర్ చేయడానికి మరియు ఆస్పిరేషన్‌ను నిరోధించడానికి హై-వాక్యూమ్ పోర్టబుల్ సక్షన్ పంప్.',
-    image: '/images/equipment/suction.png',
+    image: '/images/equipment/suction.webp',
     features: [
       'High suction capacity',
       'Portable and lightweight',
@@ -142,7 +142,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'ఎమర్జెన్సీ ట్రామా బ్యాగ్',
     shortDescription: 'Comprehensive trauma and first-aid kit containing essential life-saving medications and dressings.',
     shortDescriptionTe: 'అత్యవసర ప్రాణాలను రక్షించే మందులు మరియు డ్రెస్సింగ్‌లను కలిగి ఉన్న సమగ్ర ట్రామా మరియు ఫస్ట్-ఎయిడ్ కిట్.',
-    image: '/images/equipment/firstaid.png',
+    image: '/images/equipment/firstaid.webp',
     features: [
       'Advanced airway kit',
       'Emergency medications',
@@ -160,7 +160,7 @@ export const equipmentList: Equipment[] = [
     titleTe: 'ఫోల్డింగ్ ట్రాన్సిట్ వీల్‌చైర్',
     shortDescription: 'Lightweight folding wheelchair for safe and comfortable patient transport in restricted spaces.',
     shortDescriptionTe: 'పరిమిత స్థలాలలో రోగులను సురక్షితంగా మరియు సౌకర్యవంతంగా తీసుకెళ్లడానికి తేలికపాటి ఫోల్డింగ్ వీల్‌చైర్.',
-    image: '/images/equipment/wheelchair.png',
+    image: '/images/equipment/wheelchair.webp',
     features: [
       'Quick folding mechanism',
       'Safety harness',

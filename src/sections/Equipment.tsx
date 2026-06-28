@@ -69,7 +69,7 @@ export const Equipment: React.FC<EquipmentProps> = ({ onEquipmentClick }) => {
               >
                 {/* Image Header */}
                 <div className="relative h-48 w-full overflow-hidden bg-white flex items-center justify-center p-4">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src={item.image} 
                     alt={title} 
                     className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-110"

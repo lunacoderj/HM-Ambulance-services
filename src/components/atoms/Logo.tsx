@@ -14,7 +14,7 @@ export const Logo: React.FC<LogoProps> = ({
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       {/* Image Logo */}
-      <img src="/fevicon.png" alt="HM Ambulance Logo" className="w-[78px] h-[78px] object-contain drop-shadow-md" />
+      <img src="/fevicon.webp" alt="HM Ambulance Logo" className="w-[78px] h-[78px] object-contain drop-shadow-md" />
       
       {/* Text */}
       <div className="flex flex-col justify-center">

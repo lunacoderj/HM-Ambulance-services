@@ -72,8 +72,8 @@ export const Footer: React.FC = () => {
         <div className="absolute bottom-0 right-0 md:right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-600/30 rounded-[100%] blur-[70px] md:blur-[100px] mix-blend-screen opacity-80" />
 
         {/* The Ambulance Image */}
-        <img 
-          src="/images/footer_vehical.png" 
+        <img loading="lazy" decoding="async" 
+          src="/images/footer_vehical.webp" 
           alt="HM Ambulance Fleet" 
           className="absolute bottom-0 md:-bottom-10 -right-20 md:-right-10 lg:right-[5%] w-[400px] md:w-[800px] opacity-15 md:opacity-30 object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-transform duration-1000 hover:scale-105 hover:opacity-40"
           style={{ maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%)', WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%)' }}

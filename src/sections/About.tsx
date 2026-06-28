@@ -61,8 +61,8 @@ export const About: React.FC = () => {
             {/* Main Visiting Card */}
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/10 transition-all duration-700 transform group-hover:-translate-y-2 group-hover:rotate-[1deg] bg-gray-900">
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-overlay" />
-              <img 
-                src="/images/visiting_card.png" 
+              <img loading="lazy" decoding="async" 
+                src="/images/visiting_card.webp" 
                 alt="HM Ambulance Visiting Card" 
                 className="w-full h-auto object-cover relative z-0"
               />

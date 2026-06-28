@@ -40,7 +40,7 @@ export const EquipmentDetails: React.FC<EquipmentDetailsProps> = ({ equipment, o
       <div className="relative h-[60vh] md:h-[70vh] w-full flex items-end pb-16 md:pb-24 bg-white">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 flex items-center justify-center p-12">
-          <img 
+          <img loading="lazy" decoding="async" 
             src={equipment.image} 
             alt={equipment.title}
             className="w-full h-full object-contain mix-blend-multiply opacity-90"
