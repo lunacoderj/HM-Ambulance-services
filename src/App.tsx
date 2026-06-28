@@ -26,11 +26,6 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { 
-  HeaderSkeleton, HeroSkeleton, AboutSkeleton, ServicesSkeleton, 
-  EquipmentSkeleton, HowItWorksSkeleton, CoverageMapSkeleton, 
-  TestimonialsSkeleton, ContactSkeleton, FooterSkeleton 
-} from './components/skeletons/AppSkeletons';
 import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,10 +33,6 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [activeEquipment, setActiveEquipment] = useState<EquipmentType | null>(null);
-  const [appState, setAppState] = useState<'splash' | 'animating' | 'skeletons' | 'ready'>('splash');
-  const contentRef = useRef<HTMLDivElement>(null);
-  const splashContainerRef = useRef<HTMLDivElement>(null);
-  const splashLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Smooth Scrolling Initialization
@@ -70,55 +61,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    // Splash Screen: Appear, Blink, and Disappear
-    if (splashLogoRef.current) {
-      const tl = gsap.timeline();
-
-      // 1. Hold initially
-      tl.to(splashLogoRef.current, { duration: 0.4 });
-      
-      // 2. Blink effect
-      tl.to(splashLogoRef.current, { opacity: 0.3, duration: 0.1, ease: "power1.inOut" });
-      tl.to(splashLogoRef.current, { opacity: 1, duration: 0.1, ease: "power1.inOut" });
-      tl.to(splashLogoRef.current, { opacity: 0.3, duration: 0.1, ease: "power1.inOut" });
-      tl.to(splashLogoRef.current, { opacity: 1, duration: 0.1, ease: "power1.inOut" });
-
-      // 3. Disappear
-      tl.to(splashLogoRef.current, {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.4,
-        delay: 0.3,
-        ease: "power2.inOut",
-        onComplete: () => {
-          // Fade out the splash background
-          gsap.to(splashContainerRef.current, {
-            opacity: 0,
-            duration: 0.4,
-            onComplete: () => {
-              setAppState('skeletons');
-              // Show skeletons briefly
-              setTimeout(() => {
-                setAppState('ready');
-              }, 800);
-            }
-          });
-        }
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (appState === 'ready' && contentRef.current) {
-      gsap.fromTo(
-        contentRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.8, ease: 'power2.out' }
-      );
-    }
-  }, [appState]);
-  
   useEffect(() => {
     let pagePath = '/';
     if (activeService) {
@@ -153,34 +95,10 @@ function App() {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-white flex flex-col font-sans antialiased relative">
-        {appState !== 'ready' && (
-          <div ref={splashContainerRef} className="fixed inset-0 z-[100] bg-white flex items-center justify-center pointer-events-none">
-             <div ref={splashLogoRef}>
-                <Logo variant="dark" className="scale-[1.5] md:scale-[2]" />
-             </div>
-          </div>
-        )}
-
-        {appState !== 'ready' ? (
-          <>
-            <HeaderSkeleton />
-            <main className="flex-grow">
-              <HeroSkeleton />
-              <AboutSkeleton />
-              <ServicesSkeleton />
-              <EquipmentSkeleton />
-              <HowItWorksSkeleton />
-              <CoverageMapSkeleton />
-              <TestimonialsSkeleton />
-              <ContactSkeleton />
-            </main>
-            <FooterSkeleton />
-          </>
-        ) : (
-          <>
-            {!isDetailsView && <Header />}
-            
-            <div ref={contentRef} className="flex-grow flex flex-col relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
+        
+        {!isDetailsView && <Header />}
+        
+        <div className="flex-grow flex flex-col relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
 
             <Suspense fallback={null}>
               {activeService ? (
@@ -241,9 +159,7 @@ function App() {
             <EmergencyMode />
             <FloatingActions />
             <ScrollToTop />
-          </>
-        )}
-
+            
       </div>
     </LanguageProvider>
   );
