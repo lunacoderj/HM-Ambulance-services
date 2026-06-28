@@ -13,7 +13,7 @@ export const FloatingActions: React.FC = () => {
   };
 
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 p-2">
+    <div className="hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-2 p-2">
       {/* SOS Button */}
       <button
         onClick={() => window.dispatchEvent(new Event('open-emergency-mode'))}

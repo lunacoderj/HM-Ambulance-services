@@ -171,11 +171,11 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* ── CENTER: Ambulance Fleet ── */}
-          <div className="flex-1 flex items-end justify-center gap-1 sm:gap-3 md:gap-5 w-full mt-6 lg:mt-0 px-1 sm:px-0">
+          <div className="flex-1 flex flex-row items-end justify-center gap-2 sm:gap-4 w-full mt-6 lg:mt-0 px-2 sm:px-0 overflow-visible">
             {ambulances.map((amb, idx) => (
-              <div key={amb.id} className={`hero-ambulance group relative flex flex-col items-center flex-1 max-w-[320px] ${idx === 1 ? 'z-10 scale-110 mb-2' : 'z-0'}`}>
+              <div key={amb.id} className={`hero-ambulance group relative flex flex-col items-center w-1/3 max-w-[280px] lg:max-w-[320px] ${idx === 1 ? 'z-10 scale-[1.15] mb-2 sm:mb-4' : 'z-0'}`}>
                 {/* Label badge */}
-                <span className="inline-block bg-blue-700 text-white text-[7px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-[0.1em] sm:tracking-[0.15em] px-2 sm:px-3 py-1 rounded-full mb-1 sm:mb-2 shadow-md whitespace-nowrap">
+                <span className="inline-block bg-blue-700 text-white text-[9px] md:text-[11px] lg:text-xs font-black uppercase tracking-wider lg:tracking-[0.15em] px-2 py-1 rounded-full mb-1 sm:mb-2 shadow-md text-center leading-tight min-h-[24px] flex items-center justify-center w-[90%] mx-auto">
                   {amb.label}
                 </span>
                 {/* Image */}

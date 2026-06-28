@@ -15,10 +15,10 @@ export const CoverageMap: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative w-full min-h-screen lg:min-h-0 lg:h-[800px] bg-[#040810] overflow-hidden isolate flex flex-col lg:block border-t border-white/5">
+    <section className="relative w-full min-h-screen md:min-h-0 md:h-[800px] bg-[#040810] overflow-hidden isolate flex flex-col md:block border-t border-white/5">
       
-      {/* Background Map - Top on mobile, full background on desktop */}
-      <div className="relative lg:absolute inset-0 w-full h-[50vh] min-h-[400px] lg:h-full lg:min-h-full -z-20">
+      {/* Background Map - Top on mobile, full background on tablet/desktop */}
+      <div className="relative md:absolute inset-0 w-full h-[50vh] min-h-[400px] md:h-full md:min-h-full -z-20">
         <iframe
           title="Guntur Coverage Map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122393.18956903332!2d80.35406730784961!3d16.32356502758156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4a755cb1787785%3A0x9f799cb5549812ab!2sGuntur%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -35,7 +35,7 @@ export const CoverageMap: React.FC = () => {
         />
         
         {/* Gradients to blend the map seamlessly into the dark background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#040810] lg:to-transparent lg:bg-gradient-to-r lg:from-[#040810] lg:via-transparent lg:to-[#040810] pointer-events-none opacity-90 lg:opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#040810] md:to-transparent md:bg-gradient-to-r md:from-[#040810] md:via-transparent md:to-[#040810] pointer-events-none opacity-90 md:opacity-80" />
       </div>
 
       {/* Radar Sweep Effect (Visible primarily on desktop or tablet) */}
@@ -46,17 +46,17 @@ export const CoverageMap: React.FC = () => {
       </div>
 
       {/* Main Content Overlay - Pulled up on mobile to overlap the map */}
-      <div className="page-container relative z-10 flex-grow flex flex-col justify-start lg:justify-center -mt-24 lg:mt-0 lg:h-full pb-16 lg:pb-0">
+      <div className="page-container relative z-10 flex-grow flex flex-col justify-start md:justify-center -mt-24 md:mt-0 md:h-full pb-16 md:pb-0">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center h-full">
           
           {/* Glass Panel */}
-          <div className="col-span-1 lg:col-span-5 relative group mx-2 sm:mx-0">
+          <div className="col-span-1 md:col-span-6 lg:col-span-5 relative group mx-2 sm:mx-0">
             
             {/* Glowing Backdrop */}
-            <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/30 to-teal-500/30 rounded-[2rem] blur-xl opacity-80 lg:opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/30 to-teal-500/30 rounded-[2rem] blur-xl opacity-80 md:opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
             
-            <div className="relative bg-[#0a1220]/90 lg:bg-[#0a1220]/80 backdrop-blur-xl md:backdrop-blur-2xl border border-white/10 p-6 sm:p-8 md:p-12 rounded-[1.5rem] md:rounded-[2rem] shadow-2xl overflow-hidden">
+            <div className="relative bg-[#0a1220]/90 md:bg-[#0a1220]/80 backdrop-blur-xl md:backdrop-blur-2xl border border-white/10 p-6 sm:p-8 md:p-12 rounded-[1.5rem] md:rounded-[2rem] shadow-2xl overflow-hidden">
               
               {/* Live Indicator */}
               <div className="flex items-center gap-3 mb-6 md:mb-8 bg-white/5 w-fit px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10">
@@ -114,7 +114,7 @@ export const CoverageMap: React.FC = () => {
           </div>
           
           {/* Spacer for desktop to push panel left */}
-          <div className="hidden lg:block lg:col-span-7" />
+          <div className="hidden md:block md:col-span-6 lg:col-span-7" />
         </div>
       </div>
     </section>
