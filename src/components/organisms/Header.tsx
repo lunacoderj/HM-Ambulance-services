@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
         `}
       >
         {/* Top Info Bar */}
-        <div className={`hidden md:flex justify-between items-center px-6 md:px-10 py-1.5 transition-all duration-300 ${scrolled ? 'h-0 overflow-hidden opacity-0 py-0 border-none' : 'border-b border-white/10 opacity-100'}`}>
+        <div className={`hidden lg:flex justify-between items-center px-6 lg:px-10 py-1.5 transition-all duration-300 ${scrolled ? 'h-0 overflow-hidden opacity-0 py-0 border-none' : 'border-b border-white/10 opacity-100'}`}>
           <div className="flex items-center gap-6 text-[11px] font-bold tracking-widest text-white/90 uppercase">
             <span className="flex items-center gap-2">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
@@ -80,13 +80,13 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        <div className={`max-w-8xl mx-auto px-6 md:px-10 flex items-center justify-between transition-all duration-300 ${scrolled ? 'py-0.5' : 'py-2'}`}>
+        <div className={`max-w-8xl mx-auto px-6 lg:px-10 flex items-center justify-between transition-all duration-300 ${scrolled ? 'py-0.5' : 'py-2'}`}>
 
           {/* Logo */}
-          <Logo variant="light" className="w-28 md:w-40 flex-shrink-0" />
+          <Logo variant="light" className="w-28 lg:w-40 flex-shrink-0" />
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 shadow-inner" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 shadow-inner" aria-label="Main navigation">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
@@ -109,12 +109,12 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Right: Language Switcher + Emergency + Mobile Toggle */}
-          <div className="flex items-center gap-3 md:gap-5">
+          <div className="flex items-center gap-3 lg:gap-5">
             <LanguageSwitcher theme="dark" />
 
             <a
               href={`tel:${siteConfig.contact.emergencyPhoneRaw}`}
-              className="hidden md:flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-xs font-black px-5 py-2.5 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_25px_rgba(220,38,38,0.6)] hover:-translate-y-0.5"
+              className="hidden lg:flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-xs font-black px-5 py-2.5 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_25px_rgba(220,38,38,0.6)] hover:-translate-y-0.5"
             >
               <PhoneCall className="w-4 h-4 animate-pulse" />
               {t.actions?.callNow || 'EMERGENCY CALL'}
@@ -122,7 +122,7 @@ export const Header: React.FC = () => {
 
             {/* Mobile menu toggle */}
             <button
-              className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
               onClick={() => setIsMobileMenuOpen((v) => !v)}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -139,7 +139,7 @@ export const Header: React.FC = () => {
           fixed inset-0 z-40 bg-gray-950/98 backdrop-blur-xl
           flex flex-col items-center justify-center gap-10
           transition-all duration-300
-          md:hidden
+          lg:hidden
           ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
         `}
       >
