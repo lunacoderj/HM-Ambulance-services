@@ -1,14 +1,26 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import ReactGA from "react-ga4";
 import { EmergencyMode } from './components/modals/EmergencyMode';
 import { Header } from './components/organisms/Header';
 import { FloatingActions } from './components/molecules/FloatingActions';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { Logo } from './components/atoms/Logo';
 import { Footer } from './components/organisms/Footer';
 import { FloatingEmergencyBanner } from './components/molecules/FloatingEmergencyBanner';
 import { ScrollToTop } from './components/atoms/ScrollToTop';
 import type { Service } from './data/services';
 import type { Equipment as EquipmentType } from './data/equipment';
+
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { 
+  HeaderSkeleton, HeroSkeleton, AboutSkeleton, ServicesSkeleton, 
+  EquipmentSkeleton, HowItWorksSkeleton, CoverageMapSkeleton, 
+  TestimonialsSkeleton, ContactSkeleton, FooterSkeleton 
+} from './components/skeletons/AppSkeletons';
+import './index.css';
 
 // Lazy load heavy page sections (Phase 4 Optimization)
 const Hero = lazy(() => import('./sections/Hero').then(m => ({ default: m.Hero })));
@@ -21,17 +33,16 @@ const HowItWorks = lazy(() => import('./sections/HowItWorks').then(m => ({ defau
 const Contact = lazy(() => import('./sections/Contact').then(m => ({ default: m.Contact })));
 const ServiceDetails = lazy(() => import('./components/organisms/ServiceDetails').then(m => ({ default: m.ServiceDetails })));
 const EquipmentDetails = lazy(() => import('./components/organisms/EquipmentDetails').then(m => ({ default: m.EquipmentDetails })));
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [activeEquipment, setActiveEquipment] = useState<EquipmentType | null>(null);
+  const [appState, setAppState] = useState<'splash' | 'animating' | 'skeletons' | 'ready'>('splash');
+  const contentRef = useRef<HTMLDivElement>(null);
+  const splashContainerRef = useRef<HTMLDivElement>(null);
+  const splashLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Smooth Scrolling Initialization
@@ -60,6 +71,55 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    // Splash Screen: Appear, Blink, and Disappear
+    if (splashLogoRef.current) {
+      const tl = gsap.timeline();
+
+      // 1. Hold initially
+      tl.to(splashLogoRef.current, { duration: 0.4 });
+      
+      // 2. Blink effect
+      tl.to(splashLogoRef.current, { opacity: 0.3, duration: 0.1, ease: "power1.inOut" });
+      tl.to(splashLogoRef.current, { opacity: 1, duration: 0.1, ease: "power1.inOut" });
+      tl.to(splashLogoRef.current, { opacity: 0.3, duration: 0.1, ease: "power1.inOut" });
+      tl.to(splashLogoRef.current, { opacity: 1, duration: 0.1, ease: "power1.inOut" });
+
+      // 3. Disappear
+      tl.to(splashLogoRef.current, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.4,
+        delay: 0.3,
+        ease: "power2.inOut",
+        onComplete: () => {
+          // Fade out the splash background
+          gsap.to(splashContainerRef.current, {
+            opacity: 0,
+            duration: 0.4,
+            onComplete: () => {
+              setAppState('skeletons');
+              // Show skeletons briefly
+              setTimeout(() => {
+                setAppState('ready');
+              }, 800);
+            }
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (appState === 'ready' && contentRef.current) {
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, ease: 'power2.out' }
+      );
+    }
+  }, [appState]);
+  
   useEffect(() => {
     let pagePath = '/';
     if (activeService) {
@@ -94,12 +154,36 @@ function App() {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-white flex flex-col font-sans antialiased relative">
-        
-        {!isDetailsView && <Header />}
-        
-        <div className="flex-grow flex flex-col relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
+        {appState !== 'ready' && (
+          <div ref={splashContainerRef} className="fixed inset-0 z-[100] bg-white flex items-center justify-center pointer-events-none">
+             <div ref={splashLogoRef}>
+                <Logo variant="dark" className="scale-[1.5] md:scale-[2]" />
+             </div>
+          </div>
+        )}
 
-            <Suspense fallback={null}>
+        {appState !== 'ready' ? (
+          <>
+            <HeaderSkeleton />
+            <main className="flex-grow">
+              <HeroSkeleton />
+              <AboutSkeleton />
+              <ServicesSkeleton />
+              <EquipmentSkeleton />
+              <HowItWorksSkeleton />
+              <CoverageMapSkeleton />
+              <TestimonialsSkeleton />
+              <ContactSkeleton />
+            </main>
+            <FooterSkeleton />
+          </>
+        ) : (
+          <>
+            {!isDetailsView && <Header />}
+            
+            <div ref={contentRef} className="flex-grow flex flex-col relative z-10 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] rounded-b-[2.5rem]">
+
+            <Suspense fallback={<HeroSkeleton />}>
               {activeService ? (
                 <ServiceDetails 
                   service={activeService} 
@@ -158,7 +242,9 @@ function App() {
             <EmergencyMode />
             <FloatingActions />
             <ScrollToTop />
-            
+          </>
+        )}
+
       </div>
     </LanguageProvider>
   );
