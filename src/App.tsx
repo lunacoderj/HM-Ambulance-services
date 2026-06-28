@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import ReactGA from "react-ga4";
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Services } from './sections/Services';
@@ -116,6 +117,20 @@ function App() {
     }
   }, [appState]);
   
+  useEffect(() => {
+    let pagePath = '/';
+    if (activeService) {
+      pagePath = `/service/${activeService.id}`;
+    } else if (activeEquipment) {
+      pagePath = `/equipment/${activeEquipment.id}`;
+    }
+
+    ReactGA.send({
+      hitType: "pageview",
+      page: pagePath,
+    });
+  }, [activeService, activeEquipment]);
+
   useEffect(() => {
     // Instantly scroll to the top of the page when opening/closing details
     if ((window as any).lenis) {
