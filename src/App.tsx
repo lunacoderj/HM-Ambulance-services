@@ -8,7 +8,7 @@ import { Logo } from './components/atoms/Logo';
 import { Footer } from './components/organisms/Footer';
 import { FloatingEmergencyBanner } from './components/molecules/FloatingEmergencyBanner';
 import { ScrollToTop } from './components/atoms/ScrollToTop';
-import type { Service } from './data/services';
+import { services, type Service } from './data/services';
 import type { Equipment as EquipmentType } from './data/equipment';
 
 import Lenis from 'lenis';
@@ -121,11 +121,89 @@ function App() {
   }, [appState]);
   
   useEffect(() => {
+    const serviceSlugMap: Record<string, string> = {
+      'basic-life-support': 's1',
+      'emergency-patient-transport': 's1',
+      'advanced-life-support': 's2',
+      'icu-ventilator-ambulance': 's3',
+      'ventilator-ambulance': 's3',
+      'patient-transfer': 's4',
+      'outstation-transfer': 's5',
+      'freezer-box': 's6',
+      'dead-body-transport': 's7',
+      'mortuary-van': 's7',
+      'event-medical': 's8',
+      'air-ambulance': 's9',
+      's1': 's1',
+      's2': 's2',
+      's3': 's3',
+      's4': 's4',
+      's5': 's5',
+      's6': 's6',
+      's7': 's7',
+      's8': 's8',
+      's9': 's9'
+    };
+
+    const path = window.location.pathname.toLowerCase();
+    if (path !== '/' && path !== '') {
+      let matched = false;
+      for (const [slug, id] of Object.entries(serviceSlugMap)) {
+        if (path.includes(slug)) {
+          const found = services.find(s => s.id === id);
+          if (found) {
+            setActiveService(found);
+            matched = true;
+            break;
+          }
+        }
+      }
+      if (!matched && !path.startsWith('/equipment/')) {
+        let metaRobots = document.querySelector('meta[name="robots"]');
+        if (metaRobots) {
+          metaRobots.setAttribute('content', 'noindex, nofollow');
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     let pagePath = '/';
+    let canonical = 'https://www.hmambulance.in/';
+    let title = 'HM Ambulance Services | 24/7 Emergency & ICU Ambulance in Visakhapatnam';
+
     if (activeService) {
       pagePath = `/service/${activeService.id}`;
+      const slugKey = Object.entries({
+        'basic-life-support': 's1',
+        'advanced-life-support': 's2',
+        'icu-ventilator-ambulance': 's3',
+        'patient-transfer': 's4',
+        'outstation-transfer': 's5',
+        'freezer-box': 's6',
+        'dead-body-transport': 's7',
+        'event-medical': 's8',
+        'air-ambulance': 's9'
+      }).find(([, id]) => id === activeService.id)?.[0] || activeService.id;
+      canonical = `https://www.hmambulance.in/services/${slugKey}`;
+      title = `${activeService.title} | HM Ambulance Services Visakhapatnam`;
     } else if (activeEquipment) {
       pagePath = `/equipment/${activeEquipment.id}`;
+      title = `${activeEquipment.title} | HM Ambulance Services Visakhapatnam`;
+    }
+
+    document.title = title;
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'canonical';
+      document.head.appendChild(link);
+    }
+    link.href = canonical;
+
+    let metaRobots = document.querySelector('meta[name="robots"]');
+    if (metaRobots) {
+      metaRobots.setAttribute('content', 'index, follow');
     }
 
     ReactGA.send({
@@ -140,16 +218,6 @@ function App() {
       });
     }
   }, [activeService, activeEquipment]);
-
-  useEffect(() => {
-    // Set noindex if loaded on non-root subpath
-    if (typeof window !== 'undefined' && window.location.pathname !== '/' && window.location.pathname !== '') {
-      let metaRobots = document.querySelector('meta[name="robots"]');
-      if (metaRobots) {
-        metaRobots.setAttribute('content', 'noindex, nofollow');
-      }
-    }
-  }, []);
 
   useEffect(() => {
     // Instantly scroll to the top of the page when opening/closing details

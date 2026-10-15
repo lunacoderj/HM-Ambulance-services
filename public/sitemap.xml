@@ -1,9 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.hmambulance.in/</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/hero-bg.webp</image:loc>
+      <image:title>HM Ambulance Services Visakhapatnam</image:title>
+      <image:caption>24/7 Emergency Ambulance, ICU Ventilator &amp; Patient Transport in Visakhapatnam</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/fevicon.webp</image:loc>
+      <image:title>HM Ambulance Official Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/basic-life-support</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/ambulances/basic_icu.webp</image:loc>
+      <image:title>Basic Life Support (BLS) Ambulance</image:title>
+      <image:caption>Non-critical patient transfers with essential medical monitoring and continuous oxygen</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/advanced-life-support</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/ambulances/advanced.webp</image:loc>
+      <image:title>Advanced Life Support (ALS) Ambulance</image:title>
+      <image:caption>Critical patient care with continuous ECG monitoring, defibrillator, and emergency drugs</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/icu-ventilator-ambulance</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/ambulances/freezer_ventilator.webp</image:loc>
+      <image:title>ICU &amp; Ventilator Ambulance Visakhapatnam</image:title>
+      <image:caption>Mobile intensive care unit with advanced portable mechanical ventilator</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/patient-transfer</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/service_patient_transfer.webp</image:loc>
+      <image:title>Patient Transfer &amp; Hospital Discharge</image:title>
+      <image:caption>Comfortable, air-conditioned patient transport between hospitals or home</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/outstation-transfer</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/service_outstation.webp</image:loc>
+      <image:title>Outstation Long-Distance Patient Transfer</image:title>
+      <image:caption>Long-distance highway patient transport across Andhra Pradesh and neighbouring states</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/freezer-box</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/service_freezer_van.webp</image:loc>
+      <image:title>Dead Body Freezer Box Service (-20°C)</image:title>
+      <image:caption>Hygienic deep-freeze preservation box with transparent glass display for departed loved ones</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/dead-body-transport</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/service_dead_body.webp</image:loc>
+      <image:title>Dead Body Transport &amp; Mortuary Van</image:title>
+      <image:caption>Dignified and respectful hearse van transport from hospital to home or crematorium</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/event-medical</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/service_event_medical.webp</image:loc>
+      <image:title>Event Medical Standby Support</image:title>
+      <image:caption>On-site standby ambulance for corporate, sports, political, and public events</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hmambulance.in/services/air-ambulance</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.hmambulance.in/images/service_air_event.webp</image:loc>
+      <image:title>Air Ambulance Coordination Visakhapatnam</image:title>
+      <image:caption>Airport tarmac medical transfer assistance and charter coordination for critical emergencies</image:caption>
+    </image:image>
   </url>
 </urlset>
