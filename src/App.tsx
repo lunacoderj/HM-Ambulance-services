@@ -142,6 +142,16 @@ function App() {
   }, [activeService, activeEquipment]);
 
   useEffect(() => {
+    // Set noindex if loaded on non-root subpath
+    if (typeof window !== 'undefined' && window.location.pathname !== '/' && window.location.pathname !== '') {
+      let metaRobots = document.querySelector('meta[name="robots"]');
+      if (metaRobots) {
+        metaRobots.setAttribute('content', 'noindex, nofollow');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     // Instantly scroll to the top of the page when opening/closing details
     if ((window as any).lenis) {
       (window as any).lenis.scrollTo(0, { immediate: true });
